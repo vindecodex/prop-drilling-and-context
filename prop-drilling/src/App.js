@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Form from "./components/Form";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+  const [output, setOutput] = useState("");
+  const [outputList, setOutputList] = useState([]);
+
+  const states = {
+    output,
+    outputList
+  };
+
+  const events = {
+    _setOutput: text => {
+      setOutput(text);
+    },
+    _setOutputList: text => {
+      setOutputList([...outputList, text]);
+      setOutput("");
+    }
+  };
+
+  return <Form state={states} eventHandler={events} />;
+};
 
 export default App;
